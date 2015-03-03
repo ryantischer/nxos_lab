@@ -1,0 +1,130 @@
+
+!Command: show startup-config
+!Time: Wed Mar  4 03:36:30 2015
+!Startup config saved at: Wed Mar  4 02:50:47 2015
+
+version 7.0(3)I1(1)
+switchname Spine2
+vdc Spine2 id 1
+  limit-resource vlan minimum 16 maximum 4094
+  limit-resource vrf minimum 2 maximum 4096
+  limit-resource port-channel minimum 0 maximum 512
+  limit-resource u4route-mem minimum 248 maximum 248
+  limit-resource u6route-mem minimum 96 maximum 96
+  limit-resource m4route-mem minimum 58 maximum 58
+  limit-resource m6route-mem minimum 8 maximum 8
+
+feature ospf
+feature pim
+
+username admin password 5 $1$DeUvUlj5$fLrfHzcpwiz7HNrx2ZQud0  role network-admin
+ip domain-lookup
+copp profile strict
+snmp-server user admin network-admin auth md5 0x284243f17b5a018eff9f8850ea6adaad priv 0x284243f17b5a018eff9f8850ea6adaad localizedkey
+rmon event 1 log trap public description FATAL(1) owner PMON@FATAL
+rmon event 2 log trap public description CRITICAL(2) owner PMON@CRITICAL
+rmon event 3 log trap public description ERROR(3) owner PMON@ERROR
+rmon event 4 log trap public description WARNING(4) owner PMON@WARNING
+rmon event 5 log trap public description INFORMATION(5) owner PMON@INFO
+
+ip pim ssm range 232.0.0.0/8
+vlan 1
+
+vrf context management
+  ip route 0.0.0.0/0 10.91.85.129
+
+interface Ethernet1/1
+  ip address 192.168.1.13/30
+  ip router ospf 1 area 0.0.0.0
+  ip pim sparse-mode
+  no shutdown
+
+interface Ethernet1/2
+
+interface Ethernet1/3
+  ip address 192.168.1.5/30
+  ip router ospf 1 area 0.0.0.0
+  ip pim sparse-mode
+  no shutdown
+
+interface Ethernet1/4
+
+interface Ethernet1/5
+
+interface Ethernet1/6
+
+interface Ethernet1/7
+
+interface Ethernet1/8
+
+interface Ethernet1/9
+
+interface Ethernet1/10
+
+interface Ethernet1/11
+
+interface Ethernet1/12
+
+interface Ethernet1/13
+
+interface Ethernet1/14
+
+interface Ethernet1/15
+
+interface Ethernet1/16
+
+interface Ethernet1/17
+
+interface Ethernet1/18
+
+interface Ethernet1/19
+
+interface Ethernet1/20
+
+interface Ethernet1/21
+
+interface Ethernet1/22
+
+interface Ethernet1/23
+
+interface Ethernet1/24
+
+interface Ethernet1/25
+
+interface Ethernet1/26
+
+interface Ethernet1/27
+
+interface Ethernet1/28
+
+interface Ethernet1/29
+
+interface Ethernet1/30
+
+interface Ethernet1/31
+
+interface Ethernet1/32
+
+interface Ethernet1/33
+
+interface Ethernet1/34
+
+interface Ethernet1/35
+
+interface Ethernet1/36
+
+interface mgmt0
+  vrf member management
+  ip address 10.91.85.182/25
+
+interface loopback0
+  ip address 10.1.1.4/32
+  ip router ospf 1 area 0.0.0.0
+  ip pim sparse-mode
+line console
+line vty
+boot nxos bootflash:/n9000-dk9.7.0.3.I1.1.bin sup-1
+router ospf 1
+  router-id 10.1.1.4
+
+
